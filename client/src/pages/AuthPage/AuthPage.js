@@ -2,7 +2,7 @@ import s from "./AuthPage.module.scss";
 
 export default function AuthPage() {
   return (
-    <main className={s.background}>
+    <main className={s.auth}>
       <section className={`${s.content} ${s.content__wrapper}`}>
         <div className={s.content__form}>
           <form className={s.form}>
@@ -27,7 +27,9 @@ export default function AuthPage() {
                 <label className={s.row__message}>Error</label>
               </div>
             </div>
-            <button type="submit" className={s.form__submit}>Войти</button>
+            <button type="submit" className={s.form__submit}>
+              Войти
+            </button>
           </form>
         </div>
       </section>

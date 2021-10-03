@@ -1,0 +1,40 @@
+@import "../../variable.scss";
+
+.header {
+  background-color: $header_bg;
+  &__wrapper {
+    padding: 32px;
+  }
+  &__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  &__link {
+    color: $header_title;
+  }
+}
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__list {
+      padding-left: 25px;
+  }
+}
+.link {
+  display: flex;
+  align-items: center;
+  &__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.408px;
+    color: $nav_link;
+    margin-right: 12px;
+  }
+}
