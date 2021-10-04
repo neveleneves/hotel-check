@@ -1,0 +1,107 @@
+@import "../../variable.scss";
+
+.results {
+  width: 100%;
+  height: 902px;
+  max-height: 902px;
+  background: $components_bg;
+  box-shadow: 0px 4px 33px $components_bs;
+  border-radius: 16px;
+  box-sizing: border-box;
+  &__wrapper {
+    padding: 48px 32px;
+  }
+}
+.content {
+  width: 100%;
+  height: 100%;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  &__carousel {
+    height: 149px;
+    max-height: 149px;
+    margin-bottom: 28px;
+  }
+}
+.title {
+  display: flex;
+  align-items: center;
+  &__text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: $results_title;
+  }
+  &__arrow {
+    margin: 0px 20px;
+  }
+}
+.date {
+  &__value {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: $results_date;
+  }
+}
+.carousel {
+  display: flex;
+  align-items: center;
+  //   overflow-x: visible;
+}
+.main {
+  height: 563px;
+  max-height: 563px;
+  &__header {
+    margin-bottom: 12px;
+  }
+  &__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: $results_title;
+  }
+  &__value {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: $results_count_hotel;
+    margin: 0px 4px 0px 8px;
+  }
+  &__list {
+    height: 529px;
+    max-height: 529px;
+    padding-right: 14px;
+    overflow: auto;
+    direction: ltr;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 2px;
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: $components_scrollbar_track;
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      width: 2px;
+      background-clip: content-box;
+      background-color: $components_scrollbar_thumb;
+    }
+  }
+}

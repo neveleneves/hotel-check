@@ -55,14 +55,14 @@ export default function FavoritesBar() {
           </li>
         </ul>
       </nav>
-      <div className={s.content}>
-        <ul className={s.content__list}>
-          <FavoritesItem/>
-          <FavoritesItem/>
-          <FavoritesItem/>
-          <FavoritesItem/>
-        </ul>
-      </div>
+      <ul className={s.favorites__list}>
+        <FavoritesItem />
+        <FavoritesItem />
+        <FavoritesItem />
+        <FavoritesItem />
+        <FavoritesItem />
+        <FavoritesItem />
+      </ul>
     </section>
   );
 }

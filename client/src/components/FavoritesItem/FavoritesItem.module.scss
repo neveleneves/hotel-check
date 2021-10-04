@@ -1,0 +1,98 @@
+@import "../../variable.scss";
+
+.item {
+  height: 91px;
+  max-height: 91px;
+  position: relative;
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  &__wrapper {
+    position: relative;
+    height: 74px;
+    max-height: 74px;
+  }
+  &__line {
+    position: absolute;
+    background: $results_item_line;
+    border-radius: 8px;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+    height: 1px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+  }
+  &__button {
+    border: 0px;
+    padding: 0px;
+    background-color: transparent;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    max-width: 21px;
+    max-height: 18px;
+  }
+  &__price {
+    max-height: 21px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: $results_item_price;
+  }
+  &__priceValue {
+    margin-left: 17px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 22px;
+    text-align: right;
+    letter-spacing: -0.408px;
+    color: $results_item_price_value;
+  }
+}
+.info {
+  &__wrapper {
+    margin-bottom: 10px;
+  }
+  &__title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: -0.408px;
+    color: $favorites_item_title;
+    margin-bottom: 4px;
+  }
+  &__checkInDate {
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.408px;
+    color: $favorites_item_date;
+  }
+  &__dah {
+    display: flex;
+    align-items: center;
+    margin: 0px 13px 0px 15px;
+  }
+  &__opinion {
+    max-height: 17px;
+  }
+  &__star {
+    &:not(:last-child) {
+      margin-right: 3px;
+    }
+  }
+}

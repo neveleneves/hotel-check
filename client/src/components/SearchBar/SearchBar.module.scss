@@ -3,7 +3,7 @@
 .search {
   width: 100%;
   height: 410px;
-  max-width: 410px;
+  max-height: 410px;
   background: $components_bg;
   box-shadow: 0px 4px 33px $components_bs;
   border-radius: 16px;
@@ -59,6 +59,27 @@
     line-height: 18px;
     padding: 15px;
     max-height: 50px;
+  }
+  &__icon {
+    position: relative;
+    border: 0;
+    padding: 0;
+    &:hover {
+      &::after {
+        @include calendar-icon-color($search_icon_hover);
+      }
+    }
+    &::after {
+      @include calendar-icon-color($search_icon_default);
+      position: absolute;
+      bottom: 9px;
+      right: 16px;
+      content: "";
+      width: 24px;
+      height: 24px;
+      border: 0px;
+      cursor: pointer;
+    }
   }
   &:not(:last-child) {
     margin-bottom: 16px;

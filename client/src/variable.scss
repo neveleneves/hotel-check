@@ -10,14 +10,16 @@ $auth_submit_bs: #00000026;
 $auth_submit_gradient_1: #41522e;
 $auth_submit_gradient_2: #be8022;
 
-$header_bg: #F4F4F4;
+$header_bg: #f4f4f4;
 $header_title: #424242;
-$nav_link: #41522E;
+$nav_link: #41522e;
 
-$main_bg: #F4F4F4;
+$main_bg: #f4f4f4;
 
 $components_bg: #ffffff;
 $components_bs: #0000000a;
+$components_scrollbar_track: #e4e4e4;
+$components_scrollbar_thumb: #41522e;
 
 $search_field_stroke: #c9cacc;
 $search_submit_text: #ffffff;
@@ -25,9 +27,25 @@ $search_submit_bs: #00000026;
 $search_submit_gradient_1: #41522e;
 $search_submit_gradient_2: #be8022;
 $search_field_text: #424242;
+$search_icon_default: black;
+$search_icon_hover: darkgoldenrod;
+@mixin calendar-icon-color($color) {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.9999 17C16.1044 17 16.9999 16.1046 16.9999 15C16.9999 13.8954 16.1044 13 14.9999 13C13.8953 13 12.9999 13.8954 12.9999 15C12.9999 16.1046 13.8953 17 14.9999 17Z' fill='#{$color}' fill-opacity='0.48'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.99988 3C4.34302 3 2.99988 4.34315 2.99988 6V18C2.99988 19.6569 4.34302 21 5.99988 21H17.9999C19.6567 21 20.9999 19.6569 20.9999 18V6C20.9999 4.34315 19.6567 3 17.9999 3H5.99988ZM4.99988 18V7H18.9999V18C18.9999 18.5523 18.5522 19 17.9999 19H5.99988C5.44759 19 4.99988 18.5523 4.99988 18Z' fill='#{$color}' fill-opacity='0.48'/%3E%3C/svg%3E%0A");
+}
 
 $favorites_title: #424242;
 $favorites_filter_stroke: #e5e5e5;
 $favorites_filter_bg: #ffffff;
 $favorites_filter_title: #99a0a3;
-$favorites_filter_active:#41522E;
+$favorites_filter_active: #41522e;
+$favorites_item_title: #424242;
+$favorites_item_date: #878787;
+
+$results_title: #424242;
+$results_date: #41522e;
+$results_count_hotel: #41522e;
+$results_item_line: #87878733;
+$results_item_title: #424242;
+$results_item_date: #878787;
+$results_item_price: #878787;
+$results_item_price_value: #424242;

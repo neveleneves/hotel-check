@@ -3,13 +3,13 @@
 .favorites {
   width: 100%;
   height: 472px;
-  max-width: 472px;
+  max-height: 472px;
   background: $components_bg;
   box-shadow: 0px 4px 33px $components_bs;
   border-radius: 16px;
   box-sizing: border-box;
   &__wrapper {
-    padding: 32px;
+    padding: 32px 16px 32px 32px;
   }
   &__title {
     font-family: Roboto;
@@ -19,6 +19,31 @@
     line-height: 28px;
     color: $favorites_title;
     margin-bottom: 32px;
+  }
+  &__list {
+    width: 100%;
+    height: 288px;
+    max-height: 288px;
+    overflow: auto;
+    direction: ltr;
+    scrollbar-width: thin;
+    padding-right: 14px;
+    box-sizing: border-box;
+    &::-webkit-scrollbar {
+      margin-left: 5px;
+      width: 2px;
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: $components_scrollbar_track;
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      width: 2px;
+      background-clip: content-box;
+      background-color: $components_scrollbar_thumb;
+    }
   }
 }
 .filters {
@@ -59,10 +84,4 @@
   &_active {
     color: $favorites_filter_active;
   }
-}
-.content {
-  width: 100%;
-  height: 288px;
-  max-height: 288px;
-  overflow-y: scroll;
 }
