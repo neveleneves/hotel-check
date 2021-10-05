@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
 import { useRoutes } from "./routes";
+import { useSelector } from "react-redux";
 
 function App() {
-  const routes = useRoutes(true);
+  const user = useSelector((state) => state.auth.user);
+  const routes = useRoutes(Object.keys(user).length === 0 ? false : true);
 
   return (
     <BrowserRouter>
-      <Navbar />
       <div className="App">{routes}</div>
     </BrowserRouter>
   );
