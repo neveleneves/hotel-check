@@ -1,8 +1,16 @@
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../redux/actions";
 
 import s from "./Navbar.module.scss";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+
+  const onClickLogout = () => {
+    dispatch(logout())
+  }
+
   return (
     <header className={s.header}>
       <div className={s.header__wrapper}>
@@ -14,7 +22,7 @@ export default function Navbar() {
           </h1>
           <ul className={s.menu__list}>
             <li className={s.menu__item}>
-              <NavLink to="/auth" className={s.link}>
+              <NavLink to="/auth"  onClick={onClickLogout} className={s.link}>
                 <span className={s.link__title}>Выйти</span>
                 <svg
                   width="24"

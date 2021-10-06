@@ -35,6 +35,14 @@
     width: 100%;
     padding: 15px 0px;
     max-width: 296px;
+    &:hover {
+      border: 1.5px solid $search_submit_hover;
+      cursor: pointer;
+    }
+    &:active {
+      border: 1.5px solid $search_submit_active;
+      cursor: pointer;
+    }
   }
 }
 .row {

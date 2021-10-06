@@ -57,11 +57,6 @@ export default function FavoritesBar() {
       </nav>
       <ul className={s.favorites__list}>
         <FavoritesItem />
-        <FavoritesItem />
-        <FavoritesItem />
-        <FavoritesItem />
-        <FavoritesItem />
-        <FavoritesItem />
       </ul>
     </section>
   );

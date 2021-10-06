@@ -5,36 +5,42 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./AuthPage.module.scss";
 
 export default function AuthPage() {
+  const [authInputsValue, setAuthInputsValue] = useState({
+    email: "",
+    password: "",
+  });
   const dispatch = useDispatch();
   const { emailError, passwordError } = useSelector(
     (state) => state.auth.error
   );
 
-  const [authInputsValue, setAuthInputsValue] = useState({
-    email: "",
-    password: "",
-  });
-
   const onSubmitForm = (event) => {
     event.preventDefault();
 
-    const re =
+    const validTestEmail =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-    if (!re.test(String(event.target.email.value).toLowerCase()))
+    if (!validTestEmail.test(String(event.target.email.value).toLowerCase()))
       return dispatch(
-        showError({ emailError: "Неверный e-mail адрес", passwordError: null })
+        showError({
+          emailError: "Неверный e-mail адрес",
+          passwordError: null,
+        })
       );
-    else dispatch(hideError({ emailError: null }));
+    else dispatch(hideError({ emailError: null, passwordError: null }));
 
-    if (event.target.password.value.length < 8)
+    const validTestPassword = /[а-яА-Я]/;
+    if (
+      event.target.password.value.length < 8 ||
+      validTestPassword.test(String(event.target.password.value))
+    )
       return dispatch(
         showError({
           emailError: null,
-          passwordError: "Длина пароля должна быть не менее 8 символов",
+          passwordError: "Неверный пароль",
         })
       );
-    else dispatch(hideError({ passwordError: null }));
+    else dispatch(hideError({ passwordError: null, emailError: null }));
 
     dispatch(login({ ...authInputsValue }));
   };
@@ -54,28 +60,68 @@ export default function AuthPage() {
             <h1 className={s.form__title}>Simple Hotel Check</h1>
             <div className={s.form__container}>
               <div className={s.row}>
-                <label className={s.row__name}>Логин</label>
+                <label
+                  className={
+                    emailError
+                      ? `${s.row__name} ${s.row__name_incorrect}`
+                      : `${s.row__name}`
+                  }
+                >
+                  Логин
+                </label>
                 <input
                   type="email"
                   name="email"
                   maxLength="35"
                   onChange={onChangeInputs}
                   value={authInputsValue.email}
-                  className={s.row__field}
+                  className={
+                    emailError
+                      ? `${s.row__field} ${s.row__field_incorrect}`
+                      : `${s.row__field}`
+                  }
                 ></input>
-                <label className={s.row__message}>{emailError}</label>
+                <label
+                  className={
+                    emailError
+                      ? `${s.row__message} ${s.row__message_incorrect}`
+                      : `${s.row__message}`
+                  }
+                >
+                  {emailError}
+                </label>
               </div>
               <div className={s.row}>
-                <label className={s.row__name}>Пароль</label>
+                <label
+                  className={
+                    passwordError
+                      ? `${s.row__name} ${s.row__name_incorrect}`
+                      : `${s.row__name}`
+                  }
+                >
+                  Пароль
+                </label>
                 <input
                   type="password"
                   name="password"
                   maxLength="35"
                   onChange={onChangeInputs}
                   value={authInputsValue.password}
-                  className={s.row__field}
+                  className={
+                    passwordError
+                      ? `${s.row__field} ${s.row__field_incorrect}`
+                      : `${s.row__field}`
+                  }
                 ></input>
-                <label className={s.row__message}>{passwordError}</label>
+                <label
+                  className={
+                    passwordError
+                      ? `${s.row__message} ${s.row__message_incorrect}`
+                      : `${s.row__message}`
+                  }
+                >
+                  {passwordError}
+                </label>
               </div>
             </div>
             <button type="submit" className={s.form__submit}>

@@ -1,6 +1,8 @@
 import s from "./ResultsItem.module.scss";
 
-export default function ResultsItem() {
+export default function ResultsItem(props) {
+  const { countDay } = props;
+
   return (
     <li className={s.item}>
       <div className={s.item__wrapper}>
@@ -64,7 +66,7 @@ export default function ResultsItem() {
                     />
                   </svg>
                 </span>
-                <span className={s.info__day}>1 день</span>
+                <span className={s.info__day}>{countDay} день</span>
               </div>
             </div>
             <div className={s.info__opinion}>

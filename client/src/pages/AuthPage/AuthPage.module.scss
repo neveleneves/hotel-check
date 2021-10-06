@@ -73,11 +73,20 @@
     width: 100%;
     padding: 15px 0px;
     max-width: 345px;
+    &:hover {
+      border: 1.5px solid $auth_submit_hover;
+      cursor: pointer;
+    }
+    &:active {
+      border: 1.5px solid $auth_submit_active;
+      cursor: pointer;
+    }
   }
 }
 .row {
   display: flex;
   flex-direction: column;
+  position: relative;
   &__name {
     font-family: Roboto;
     font-style: normal;
@@ -86,6 +95,9 @@
     line-height: 19px;
     color: $auth_form_title;
     margin-bottom: 7px;
+    &_incorrect {
+      color: $auth_name_error;
+    }
   }
   &__field {
     font-family: Roboto;
@@ -97,6 +109,9 @@
     border-radius: 4px;
     padding: 15px;
     max-height: 50px;
+    &_incorrect {
+      border: 1px solid $auth_field_error;
+    }
   }
   &__message {
     font-family: Roboto;
@@ -104,9 +119,14 @@
     font-weight: 300;
     font-size: 12px;
     line-height: 14px;
-    color: $auth_field_error;
-    margin-bottom: 4px;
-    // display: none;
+    color: $auth_text_error;
+    // margin-bottom: 4px;
+    position: absolute;
+    bottom: -21px;
+    display: none;
+    &_incorrect {
+      display: block;
+    }
   }
   &:first-child {
     margin-bottom: 24px;

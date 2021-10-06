@@ -1,8 +1,14 @@
+import { useSelector } from "react-redux";
 import CarouselItem from "../CarouselItem/CarouselItem";
 import ResultsItem from "../ResultsItem/ResultsItem";
 import s from "./Results.module.scss";
 
 export default function Results() {
+  const { location, dateValue, countDay } = useSelector(
+    (state) => state.search.input
+  );
+  const localDate = new Date(dateValue);
+
   return (
     <section className={`${s.results} ${s.results__wrapper}`}>
       <div className={s.content}>
@@ -26,10 +32,16 @@ export default function Results() {
                 />
               </svg>
             </span>
-            <h2 className={s.title__text}>Москва</h2>
+            <h2 className={s.title__text}>{location}</h2>
           </div>
           <div className={s.date}>
-            <span className={s.date__value}>07 июля 2020</span>
+            <span className={s.date__value}>
+              {localDate.toLocaleDateString("ru-RU", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
           </div>
         </div>
         <div className={s.content__carousel}>
@@ -48,13 +60,7 @@ export default function Results() {
             </h3>
           </div>
           <ul className={s.main__list}>
-            <ResultsItem />
-            <ResultsItem />
-            <ResultsItem />
-            <ResultsItem />
-            <ResultsItem />
-            <ResultsItem />
-            <ResultsItem />
+            <ResultsItem countDay={countDay} />
           </ul>
         </div>
       </div>
