@@ -9,7 +9,6 @@ export default function SearchBar() {
   const { location, dateValue, countDay } = useSelector(
     (state) => state.search.input
   );
-  const localDate = new Date(dateValue);
 
   const [searchValues, setSearchValues] = useState({
     location: location,
@@ -27,7 +26,7 @@ export default function SearchBar() {
   const onSubmitSearch = (event) => {
     event.preventDefault();
     dispatch(changeDataSearch({ ...searchValues }));
-    dispatch(getHotels({ location, dateValue, countDay }));
+    dispatch(getHotels({ ...searchValues }));
   };
 
   return (
@@ -39,7 +38,7 @@ export default function SearchBar() {
               <label className={s.row__name}>Локация</label>
               <input
                 type="text"
-                maxLength="35"
+                maxLength="25"
                 defaultValue={location}
                 name="location"
                 className={s.row__field}
@@ -52,11 +51,12 @@ export default function SearchBar() {
                 type="date"
                 maxLength="15"
                 name="dateValue"
-                defaultValue={localDate.toISOString().split("T")[0]}
+                min={dateValue}
+                defaultValue={dateValue}
                 onChange={onChangeInputs}
-                className={s.row__field}
+                className={`${s.row__field} ${s.row__calendar}`}
               ></input>
-              <button type="button" className={s.row__icon}></button>
+              {/* <button type="button" className={s.row__icon}></button> */}
             </div>
             <div className={s.row}>
               <label className={s.row__name}>Количество дней</label>

@@ -8,17 +8,30 @@ export function* sagaWatcher() {
 function* sagaWorker(dataFromState) {
   try {
     const payload = yield call(getHotels, { ...dataFromState.payload });
-    console.log(payload);
     yield put({ type: GET_HOTELS, payload });
   } catch (e) {
-    console.log(e.message);
+    console.warn(e.message);
   }
 }
 
+const getCheckOut = (checkIn, countDay) => {
+  return new Date(checkIn + 86400000 * countDay);
+};
+
+const getCheckIn = (checkIn) => {
+  return new Date(checkIn);
+};
+
 const getHotels = async (data) => {
-    console.log(data)
+  const checkOutDate = getCheckOut(Date.parse(data.dateValue), data.countDay);
+  const checkInDate = getCheckIn(data.dateValue);
+
   const response = await fetch(
-    `http://engine.hotellook.com/api/v2/cache.json?location=${data.location}&currency=rub&checkIn=${data.date}&checkOut=2021-12-12&limit=10`
+    `http://engine.hotellook.com/api/v2/cache.json?location=${
+      data.location
+    }&currency=rub&checkIn=${
+      checkInDate.toISOString().split("T")[0]
+    }&checkOut=${checkOutDate.toISOString().split("T")[0]}&limit=30`
   );
   return await response.json();
 };

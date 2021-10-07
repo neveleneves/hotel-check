@@ -5,8 +5,13 @@
   width: 164px;
   max-height: 148px;
   max-height: 164px;
-  background-color: darkgrey;
   &:not(:last-child) {
     margin-right: 12px;
+  }
+  &__img {
+    border-radius: 10px;
+    height: 149px;
+    width: 164px;
+    background-position: center;
   }
 }

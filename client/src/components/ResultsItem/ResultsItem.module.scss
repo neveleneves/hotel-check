@@ -45,6 +45,10 @@
     line-height: 21px;
     letter-spacing: -0.408px;
     color: $results_item_title;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 350px;
   }
   &__checkInDate {
     display: flex;
@@ -108,5 +112,6 @@
     text-align: right;
     letter-spacing: -0.408px;
     color: $results_item_price_value;
+    white-space: nowrap;
   }
 }

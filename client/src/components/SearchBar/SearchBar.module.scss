@@ -68,6 +68,13 @@
     padding: 15px;
     max-height: 50px;
   }
+  &__calendar{
+    &::-webkit-calendar-picker-indicator {
+      width: 18px;
+      height: 18px;
+      @include calendar-icon-color($search_icon_default);
+    }
+  }
   &__icon {
     position: relative;
     border: 0;
