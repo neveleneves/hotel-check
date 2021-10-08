@@ -80,6 +80,7 @@ export default function AuthPage() {
                       ? `${s.row__field} ${s.row__field_incorrect}`
                       : `${s.row__field}`
                   }
+                  required
                 ></input>
                 <label
                   className={
@@ -112,6 +113,7 @@ export default function AuthPage() {
                       ? `${s.row__field} ${s.row__field_incorrect}`
                       : `${s.row__field}`
                   }
+                  required
                 ></input>
                 <label
                   className={

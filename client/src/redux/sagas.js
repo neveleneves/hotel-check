@@ -1,4 +1,5 @@
 import { takeLeading, put, call } from "redux-saga/effects";
+import { activeLoader, disableLoader } from "./actions";
 import { GET_HOTELS } from "./types";
 
 export function* sagaWatcher() {
@@ -7,10 +8,13 @@ export function* sagaWatcher() {
 
 function* sagaWorker(dataFromState) {
   try {
+    yield put(activeLoader())
     const payload = yield call(getHotels, { ...dataFromState.payload });
     yield put({ type: GET_HOTELS, payload });
+    yield put(disableLoader())
   } catch (e) {
     console.warn(e.message);
+    yield put(disableLoader())
   }
 }
 
@@ -31,7 +35,7 @@ const getHotels = async (data) => {
       data.location
     }&currency=rub&checkIn=${
       checkInDate.toISOString().split("T")[0]
-    }&checkOut=${checkOutDate.toISOString().split("T")[0]}&limit=30`
+    }&checkOut=${checkOutDate.toISOString().split("T")[0]}&limit=50`
   );
   return await response.json();
 };

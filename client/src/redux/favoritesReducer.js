@@ -1,14 +1,20 @@
 import {
   ADD_HOTEL,
   REMOVE_HOTEL,
-  SORT_BY_PRICE,
-  SORT_BY_RATING,
+  RESET_FAVORITES,
+  SORT_BY_PRICE_ASC,
+  SORT_BY_PRICE_DEFAULT,
+  SORT_BY_PRICE_DESC,
+  SORT_BY_RATING_ASC,
+  SORT_BY_RATING_DEFAULT,
+  SORT_BY_RATING_DESC,
 } from "./types";
 
 const initState = {
-  favoritHotels: [],
-  sortByRating: false,
-  sortByPrice: false,
+  favoriteHotels: [],
+  defaultList: [],
+  sortByRating: "DEFAULT",
+  sortByPrice: "DEFAULT",
 };
 
 export const favoritesReducer = (state = initState, action) => {
@@ -16,27 +22,68 @@ export const favoritesReducer = (state = initState, action) => {
     case ADD_HOTEL:
       return {
         ...state,
-        favoritHotels: state.favoritHotels.concat(action.payload),
+        favoriteHotels: state.favoriteHotels.concat(action.payload),
+        defaultList: state.favoriteHotels.concat(action.payload),
       };
     case REMOVE_HOTEL:
       return {
         ...state,
-        favoritHotels: state.favoritHotels.filter(
+        favoriteHotels: state.favoriteHotels.filter(
+          (hotel) => hotel.hotelId !== action.payload
+        ),
+        defaultList: state.favoriteHotels.filter(
           (hotel) => hotel.hotelId !== action.payload
         ),
       };
-    case SORT_BY_RATING:
+    case RESET_FAVORITES:
       return {
         ...state,
-        // sortByRating: state.sortByRating === action.payload ? true : false,
-        favoritHotels: state.favoritHotels.sort((a, b) => {
-          console.log(a.stars)
+        favoriteHotels: action.payload,
+        defaultList: action.payload,
+      };
+    case SORT_BY_RATING_ASC:
+      return {
+        ...state,
+        sortByRating: action.payload,
+        favoriteHotels: state.favoriteHotels.sort((a, b) => {
+          return a.stars - b.stars;
+        }),
+      };
+    case SORT_BY_RATING_DESC:
+      return {
+        ...state,
+        sortByRating: action.payload,
+        favoriteHotels: state.favoriteHotels.sort((a, b) => {
           return b.stars - a.stars;
         }),
       };
-    case SORT_BY_PRICE:
+    case SORT_BY_RATING_DEFAULT:
       return {
         ...state,
+        sortByRating: action.payload,
+        favoriteHotels: [...state.defaultList],
+      };
+    case SORT_BY_PRICE_ASC:
+      return {
+        ...state,
+        sortByPrice: action.payload,
+        favoriteHotels: state.favoriteHotels.sort((a, b) => {
+          return a.priceFrom - b.priceFrom;
+        }),
+      };
+    case SORT_BY_PRICE_DESC:
+      return {
+        ...state,
+        sortByPrice: action.payload,
+        favoriteHotels: state.favoriteHotels.sort((a, b) => {
+          return b.priceFrom - a.priceFrom;
+        }),
+      };
+    case SORT_BY_PRICE_DEFAULT:
+      return {
+        ...state,
+        sortByPrice: action.payload,
+        favoriteHotels: [...state.defaultList],
       };
     default:
       return state;

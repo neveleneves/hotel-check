@@ -3,11 +3,11 @@ import s from "./MainPage.module.scss";
 import FavoritesBar from "../../components/FavoritesBar/FavoritesBar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Results from "../../components/Results/Results";
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function MainPage() {
   return (
-    <div>
+    <div className={s.mainPage}>
       <Navbar />
       <main className={s.main}>
         <div className={s.main__container}>

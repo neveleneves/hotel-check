@@ -1,5 +1,3 @@
-// import { HIDE_ERROR, LOGIN, LOGOUT, SHOW_ERROR } from "./types";
-
 const initState = {
   images: [
     {

@@ -27,7 +27,7 @@
     overflow: auto;
     direction: ltr;
     scrollbar-width: thin;
-    padding-right: 14px;
+    padding-right: 16px;
     box-sizing: border-box;
     &::-webkit-scrollbar {
       margin-left: 5px;
@@ -64,7 +64,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     background-color: $favorites_filter_bg;
-    padding: 4px 8px;
+    padding: 3px 8px;
     display: flex;
     align-items: center;
     &_active {
@@ -80,8 +80,36 @@
     letter-spacing: -0.408px;
     color: $favorites_filter_title;
     margin-right: 4px;
+    &_active {
+      color: $favorites_filter_active;
+    }
   }
-  &_active {
-    color: $favorites_filter_active;
+  &__icon {
+    @include filter-icon-color(
+      $favorites_filter_button_disable,
+      $favorites_filter_button_disable,
+      0.32,
+      0.32
+    );
+    width: 18px;
+    height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    &_ascending {
+      @include filter-icon-color(
+        $favorites_filter_button_active,
+        $favorites_filter_button_active,
+        1.0,
+        0.3
+      );
+    }
+    &_descending {
+      @include filter-icon-color(
+        $favorites_filter_button_active,
+        $favorites_filter_button_active,
+        0.3,
+        1
+      );
+    }
   }
 }

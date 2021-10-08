@@ -3,31 +3,35 @@ import { ReactComponent as DisableStar } from "../../img/star.svg";
 import { ReactComponent as ActiveStar } from "../../img/star-active.svg";
 import { ReactComponent as Dash } from "../../img/dah.svg";
 import { ReactComponent as Like } from "../../img/like.svg";
-import { removeFromFavorites } from "../../redux/actions";
+import { useEnumerate } from "../hooks/useEnumerate";
+import {
+  removeFromFavorites,
+  sortByPriceDefault,
+  sortByRatingDefault,
+} from "../../redux/actions";
 
 import s from "./FavoritesItem.module.scss";
 
 export default function FavoritesItem(props) {
   const { title, price, stars, hotelID, checkInDate, countDay } = props;
   const dispatch = useDispatch();
-  const { favoritHotels } = useSelector((state) => state.favorites);
-
-  const opinion = Array(5).fill(false);
-  for (let i = 0; i !== stars; i++) {
-    opinion[i] = true;
-  }
-
-  const dateFormat = checkInDate.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const { favoriteHotels, sortByPrice, sortByRating } = useSelector(
+    (state) => state.favorites
+  );
+  const { label } = useEnumerate(countDay, ["день", "дня", "дней"], "день");
 
   const removeFavoritesHandler = () => {
-    const hotelToRemove = favoritHotels.find(
+    const hotelToRemove = favoriteHotels.find(
       (hotel) => hotel.hotelId === hotelID
     );
-    if (hotelToRemove) return dispatch(removeFromFavorites(hotelID));
+    if (hotelToRemove) {
+      dispatch(removeFromFavorites(hotelID));
+      if (favoriteHotels.length === 1) {
+        if (sortByRating !== "DEFAULT")
+          dispatch(sortByRatingDefault("DEFAULT"));
+        if (sortByPrice !== "DEFAULT") dispatch(sortByPriceDefault("DEFAULT"));
+      }
+    }
   };
 
   return (
@@ -39,24 +43,48 @@ export default function FavoritesItem(props) {
               <h3 className={s.info__title}>{title}</h3>
               <div className={s.info__checkInDate}>
                 <span className={s.info__date}>{`${
-                  dateFormat.split(",")[0].split(" ").reverse().join(" ") + ","
-                }${dateFormat.split(",")[1]}`}</span>
+                  checkInDate
+                    .toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                    .split(",")[0]
+                    .split(" ")
+                    .reverse()
+                    .join(" ") + ","
+                }${
+                  checkInDate
+                    .toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                    .split(",")[1]
+                }`}</span>
                 <span className={s.info__dah}>
                   <Dash />
                 </span>
-                <span className={s.info__day}>{countDay} день</span>
+                <span className={s.info__day}>
+                  {countDay} {label}
+                </span>
               </div>
             </div>
             <div className={s.info__opinion}>
-              <span className={s.info__star}>
-                {opinion.map((star, index) => {
+              {Array(5)
+                .fill(false)
+                .fill(true, 0, stars)
+                .map((star, index) => {
                   return star ? (
-                    <ActiveStar key={index} />
+                    <span key={index} className={s.info__star}>
+                      <ActiveStar />
+                    </span>
                   ) : (
-                    <DisableStar key={index} />
+                    <span key={index} className={s.info__star}>
+                      <DisableStar key={index} />
+                    </span>
                   );
                 })}
-              </span>
             </div>
           </div>
         </div>

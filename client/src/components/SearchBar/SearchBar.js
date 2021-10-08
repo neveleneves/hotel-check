@@ -25,6 +25,7 @@ export default function SearchBar() {
 
   const onSubmitSearch = (event) => {
     event.preventDefault();
+
     dispatch(changeDataSearch({ ...searchValues }));
     dispatch(getHotels({ ...searchValues }));
   };
@@ -43,6 +44,7 @@ export default function SearchBar() {
                 name="location"
                 className={s.row__field}
                 onChange={onChangeInputs}
+                required
               ></input>
             </div>
             <div className={`${s.row}`}>
@@ -51,10 +53,10 @@ export default function SearchBar() {
                 type="date"
                 maxLength="15"
                 name="dateValue"
-                min={dateValue}
                 defaultValue={dateValue}
                 onChange={onChangeInputs}
                 className={`${s.row__field} ${s.row__calendar}`}
+                required
               ></input>
               {/* <button type="button" className={s.row__icon}></button> */}
             </div>
@@ -69,6 +71,7 @@ export default function SearchBar() {
                 className={s.row__field}
                 min="1"
                 max="100"
+                required
               ></input>
             </div>
           </div>
