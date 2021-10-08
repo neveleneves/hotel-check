@@ -31,7 +31,7 @@ const store = createStore(
       thunk, saga
     ),
     //for dev
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 const persistor = persistStore(store);

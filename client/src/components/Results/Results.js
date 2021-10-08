@@ -8,7 +8,7 @@ import EmptyMessage from "../EmptyMessage/EmptyMessage";
 import { getHotels } from "../../redux/actions";
 import { ReactComponent as TitleArrow } from "../../img/arrow.svg";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
-import { useEnumerate } from "../hooks/useEnumerate";
+import { useEnumerate } from "../../hooks/useEnumerate";
 
 import s from "./Results.module.scss";
 

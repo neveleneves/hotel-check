@@ -8,13 +8,13 @@ export function* sagaWatcher() {
 
 function* sagaWorker(dataFromState) {
   try {
-    yield put(activeLoader())
+    yield put(activeLoader());
     const payload = yield call(getHotels, { ...dataFromState.payload });
     yield put({ type: GET_HOTELS, payload });
-    yield put(disableLoader())
+    yield put(disableLoader());
   } catch (e) {
     console.warn(e.message);
-    yield put(disableLoader())
+    yield put(disableLoader());
   }
 }
 
@@ -31,7 +31,7 @@ const getHotels = async (data) => {
   const checkInDate = getCheckIn(data.dateValue);
 
   const response = await fetch(
-    `http://engine.hotellook.com/api/v2/cache.json?location=${
+    `https://engine.hotellook.com/api/v2/cache.json?location=${
       data.location
     }&currency=rub&checkIn=${
       checkInDate.toISOString().split("T")[0]

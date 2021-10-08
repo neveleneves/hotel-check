@@ -5,7 +5,7 @@ import { ReactComponent as ActiveStar } from "../../img/star-active.svg";
 import { ReactComponent as HotelIcon } from "../../img/hotel.svg";
 import { ReactComponent as Dash } from "../../img/dah.svg";
 import { ReactComponent as Like } from "../../img/like.svg";
-import { useEnumerate } from "../hooks/useEnumerate";
+import { useEnumerate } from "../../hooks/useEnumerate";
 import {
   addToFavorites,
   removeFromFavorites,
